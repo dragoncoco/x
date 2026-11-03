@@ -454,10 +454,18 @@ def page_header(code, title, description):
     )
 
 
+def navigate_room(target):
+    st.session_state.room = target
+
+
 def room_button(label, target, key):
-    if st.button(label, key=key, use_container_width=True):
-        st.session_state.room = target
-        st.rerun()
+    st.button(
+        label,
+        key=key,
+        use_container_width=True,
+        on_click=navigate_room,
+        args=(target,)
+    )
 
 
 # =========================================================
